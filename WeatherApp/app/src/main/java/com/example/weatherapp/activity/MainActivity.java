@@ -8,15 +8,16 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.viewmodel.MainViewModel;
 
+import org.json.JSONObject;
+
 import java.util.Objects;
 
 public class MainActivity extends BasicActivity<MainViewModel> {
-
 
     @SuppressLint("WrongConstant")
     @Override
@@ -25,7 +26,10 @@ public class MainActivity extends BasicActivity<MainViewModel> {
         setContentView(R.layout.activity_main);
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.search_action_bar);
-        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
+        viewModel.getJsonResponse().observe(this, (JSONObject o) -> {
+            // TODO on response
+        });
     }
 
     @Override

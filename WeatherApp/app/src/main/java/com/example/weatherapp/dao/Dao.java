@@ -22,4 +22,7 @@ public interface Dao {
     @Query("SELECT * FROM config WHERE configId = :configId")
     UserConfig getUserConfig(int configId);
 
+    @Query("SELECT defaultCity FROM config WHERE configId = :configId")
+    String getDefaultCity(int configId);
+
 }

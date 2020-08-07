@@ -12,14 +12,13 @@ import lombok.Setter;
 public class UserConfig {
     public static final int CONFIG_ID = 1;
 
-    public static final String API_KEY = "6c5b345608698b4bab1083ef8e2cbe8d";
-
     @PrimaryKey
     private int configId;
 
     private String defaultCity;
 
-    public UserConfig(String defaultCity) {
+    public UserConfig(int configId, String defaultCity) {
+        this.configId = configId;
         this.defaultCity = defaultCity;
     }
 }
