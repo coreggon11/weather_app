@@ -1,76 +1,46 @@
 package com.example.weatherapp.activity;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
+import android.app.ActionBar;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.java.LoginData;
-import com.example.weatherapp.java.User;
 import com.example.weatherapp.viewmodel.MainViewModel;
 
-/**
- * main activity which runs on app open and contains login and register options
- */
+import java.util.Objects;
+
 public class MainActivity extends BasicActivity<MainViewModel> {
 
-    private EditText usernameEditText;
-    private EditText passwordEditText;
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.search_action_bar);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        usernameEditText = findViewById(R.id.main_text_edit_username);
-        passwordEditText = findViewById(R.id.main_textedit_password);
-        Button loginButton = findViewById(R.id.main_button_login);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                login();
-            }
-        });
-        Button registerButton = findViewById(R.id.main_button_register);
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                register();
-            }
-        });
     }
 
-    /**
-     * logs existing user in the app
-     */
-    private void login() {
-        User user = viewModel.login(usernameEditText.getText().toString(), passwordEditText.getText().toString());
-        if (user == null) {
-            Toast.makeText(getApplicationContext(), R.string.login_failed, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.login_success, Toast.LENGTH_LONG).show();
-            LoginData.setLoggedUser(user);
-
-            startActivity(new Intent(getApplicationContext(), InsideActivity.class));
-        }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.search_menu, menu);
+        return true;
     }
 
-    /**
-     * registers new user to the app and logs him
-     */
-    private void register() {
-        User user = viewModel.register(usernameEditText.getText().toString(), passwordEditText.getText().toString());
-        if (user == null) {
-            Toast.makeText(getApplicationContext(), R.string.register_failed, Toast.LENGTH_LONG).show();
-        } else {
-            Toast.makeText(getApplicationContext(), R.string.register_success, Toast.LENGTH_LONG).show();
-            LoginData.setLoggedUser(user);
-            startActivity(new Intent(getApplicationContext(), InsideActivity.class));
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.button_search) {
+            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_LONG).show();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 }

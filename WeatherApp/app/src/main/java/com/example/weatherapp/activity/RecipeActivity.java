@@ -92,32 +92,32 @@ public class RecipeActivity extends BasicActivity<RecipeViewModel> {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.recipe_menu, menu);
-        menu.findItem(R.id.edit_recipe).setVisible(allowEdit);
-        menu.findItem(R.id.delete_recipe).setVisible(allowEdit);
+//        menuInflater.inflate(R.menu.recipe_menu, menu);
+//        menu.findItem(R.id.edit_recipe).setVisible(allowEdit);
+//        menu.findItem(R.id.delete_recipe).setVisible(allowEdit);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.edit_recipe) {
-            editRecipe();
-            return true;
-        } else if (item.getItemId() == R.id.delete_recipe) {
-            new AlertDialog.Builder(RecipeActivity.this)
-                    .setTitle(R.string.alert)
-                    .setMessage(R.string.delete_recipe_question)
-                    .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            deleteRecipe();
-                            Intent returnIntent = new Intent();
-                            returnIntent.putExtra(EXTRA_DELETE, true);
-                            setResult(RESULT_OK, returnIntent);
-                            finish();
-                            Toast.makeText(getApplicationContext(), R.string.recipe_deleted, Toast.LENGTH_SHORT).show();
-                        }
-                    }).setNegativeButton(R.string.cancel, null).show();
-        }
+//        if (item.getItemId() == R.id.edit_recipe) {
+//            editRecipe();
+//            return true;
+//        } else if (item.getItemId() == R.id.delete_recipe) {
+//            new AlertDialog.Builder(RecipeActivity.this)
+//                    .setTitle(R.string.alert)
+//                    .setMessage(R.string.delete_recipe_question)
+//                    .setPositiveButton(R.string.delete, new DialogInterface.OnClickListener() {
+//                        public void onClick(DialogInterface dialog, int which) {
+//                            deleteRecipe();
+//                            Intent returnIntent = new Intent();
+//                            returnIntent.putExtra(EXTRA_DELETE, true);
+//                            setResult(RESULT_OK, returnIntent);
+//                            finish();
+//                            Toast.makeText(getApplicationContext(), R.string.recipe_deleted, Toast.LENGTH_SHORT).show();
+//                        }
+//                    }).setNegativeButton(R.string.cancel, null).show();
+//        }
         return super.onOptionsItemSelected(item);
     }
 

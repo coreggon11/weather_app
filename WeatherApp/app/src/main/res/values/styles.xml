@@ -14,4 +14,8 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
+    <style name="AppTheme.SearchActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>

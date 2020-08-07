@@ -47,7 +47,7 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserRecipesFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_user_recipes);
+//            navigationView.setCheckedItem(R.id.nav_user_recipes);
         }
     }
 
@@ -62,23 +62,23 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.nav_user_recipes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserRecipesFragment()).commit();
-                setTitle(R.string.user_recipes);
-                break;
-            case R.id.nav_browse_recipes:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BrowseRecipesFragment()).commit();
-                setTitle(R.string.browse_recipes);
-                break;
-            case R.id.nav_logout:
-                LoginData.setLoggedUser(null);
-                Toast.makeText(getApplicationContext(), R.string.logout_success, Toast.LENGTH_LONG).show();
-                finish();
-                break;
-        }
+//        switch (menuItem.getItemId()) {
+//            case R.id.nav_user_recipes:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserRecipesFragment()).commit();
+//                setTitle(R.string.user_recipes);
+//                break;
+//            case R.id.nav_browse_recipes:
+//                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new BrowseRecipesFragment()).commit();
+//                setTitle(R.string.browse_recipes);
+//                break;
+//            case R.id.nav_logout:
+//                LoginData.setLoggedUser(null);
+//                Toast.makeText(getApplicationContext(), R.string.logout_success, Toast.LENGTH_LONG).show();
+//                finish();
+//                break;
+//        }
 
-        drawerLayout.closeDrawer(GravityCompat.START);
+//        drawerLayout.closeDrawer(GravityCompat.START);
 
         return true;
     }

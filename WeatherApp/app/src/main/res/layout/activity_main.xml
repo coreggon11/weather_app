@@ -6,47 +6,4 @@
     android:orientation="horizontal"
     tools:context=".activity.MainActivity">
 
-    <Button
-        android:id="@+id/main_button_login"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_textedit_password"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
-        android:text="@string/login" />
-
-    <Button
-        android:id="@+id/main_button_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_button_login"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorAccent"
-        android:text="@string/register" />
-
-    <EditText
-        android:id="@+id/main_text_edit_username"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:hint="@string/user_name"
-        android:inputType="text" />
-
-    <EditText
-        android:id="@+id/main_textedit_password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_text_edit_username"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints=""
-        android:hint="@string/password"
-        android:inputType="textPassword" />
-
 </RelativeLayout>

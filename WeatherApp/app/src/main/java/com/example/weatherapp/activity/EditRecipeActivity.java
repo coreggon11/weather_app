@@ -75,16 +75,16 @@ public class EditRecipeActivity extends BasicActivity<RecipeViewModel> {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.edit_recipe_menu, menu);
+//        menuInflater.inflate(R.menu.edit_recipe_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.save_recipe) {
-            saveRecipe();
-            return true;
-        }
+//        if (item.getItemId() == R.id.save_recipe) {
+//            saveRecipe();
+//            return true;
+//        }
         return super.onOptionsItemSelected(item);
     }
 
