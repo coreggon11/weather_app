@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +14,6 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.weatherapp.R;
-import com.example.weatherapp.java.LoginData;
 import com.google.android.material.navigation.NavigationView;
 
 /**
@@ -39,14 +37,14 @@ public class InsideActivity extends AppCompatActivity implements NavigationView.
         navigationView.setNavigationItemSelectedListener(this);
 
         TextView view = navigationView.getHeaderView(0).findViewById(R.id.nav_bar_user_name);
-        view.setText(LoginData.getLoggedUserName());
+//        view.setText(ApplicationData.getLoggedUserName());
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserRecipesFragment()).commit();
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new UserRecipesFragment()).commit();
 //            navigationView.setCheckedItem(R.id.nav_user_recipes);
         }
     }

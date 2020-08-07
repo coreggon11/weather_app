@@ -5,13 +5,10 @@ import android.content.Context;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import com.example.weatherapp.dao.RecipeDao;
-import com.example.weatherapp.dao.UserDao;
-import com.example.weatherapp.java.Recipe;
-import com.example.weatherapp.java.RecipeComment;
-import com.example.weatherapp.java.User;
+import com.example.weatherapp.dao.Dao;
+import com.example.weatherapp.java.UserConfig;
 
-@androidx.room.Database(entities = {User.class, Recipe.class, RecipeComment.class}, version = 1, exportSchema = false)
+@androidx.room.Database(entities = {UserConfig.class}, version = 1, exportSchema = false)
 /**
  * database class which contains an instance of database and with which we can access the dao
  */
@@ -33,8 +30,6 @@ public abstract class Database extends RoomDatabase {
         return instance;
     }
 
-    public abstract UserDao userDao();
-
-    public abstract RecipeDao recipeDao();
+    public abstract Dao getDao();
 
 }
