@@ -1,6 +1,8 @@
 package com.example.weatherapp.viewmodel;
 
 import android.app.Application;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -9,6 +11,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.weatherapp.java.Constants;
+import com.example.weatherapp.java.WeatherInfo;
 import com.example.weatherapp.repository.Repository;
 
 import org.json.JSONObject;
@@ -19,6 +22,7 @@ import java.io.InputStreamReader;
 import java.net.URL;
 
 import lombok.Getter;
+import lombok.SneakyThrows;
 
 /**
  * view model for main activity
@@ -27,27 +31,31 @@ import lombok.Getter;
 public class MainViewModel extends AndroidViewModel {
 
     protected Repository repository;
-    private MutableLiveData<JSONObject> jsonResponse;
+    private MutableLiveData<WeatherInfo> weatherInfo;
+    private MutableLiveData<Bitmap> weatherIcon;
 
     public MainViewModel(@NonNull Application application) {
         super(application);
         this.repository = new Repository(application);
-        jsonResponse = new MutableLiveData<>();
+        weatherInfo = new MutableLiveData<>();
+        weatherIcon = new MutableLiveData<>();
         searchCity();
     }
 
-    public void searchCity() {
-        new GetTask(repository.getDefaultCity(), jsonResponse).execute();
+    private void searchCity() {
+        new GetTask(repository.getDefaultCity(), weatherInfo, weatherIcon).execute();
     }
 
     private static class GetTask extends AsyncTask<Void, Void, JSONObject> {
         private String cityName;
-        private MutableLiveData<JSONObject> liveData;
+        private MutableLiveData<WeatherInfo> liveData;
+        private MutableLiveData<Bitmap> weatherIcon;
 
-        GetTask(String cityName, MutableLiveData<JSONObject> liveData) {
+        GetTask(String cityName, MutableLiveData<WeatherInfo> liveData, MutableLiveData<Bitmap> weatherIcon) {
             super();
             this.cityName = cityName;
             this.liveData = liveData;
+            this.weatherIcon = weatherIcon;
         }
 
         @Override
@@ -77,9 +85,40 @@ public class MainViewModel extends AndroidViewModel {
             }
         }
 
+        @SneakyThrows
         @Override
         protected void onPostExecute(JSONObject response) {
-            liveData.postValue(response);
+            String cityName = response.getString("name");
+            JSONObject main = response.getJSONObject("main");
+            JSONObject weather = response.getJSONArray("weather").getJSONObject(0);
+            double temperature = main.getDouble("temp");
+            String weatherDesc = weather.getString("description");
+            String weatherIconUrl = "http://openweathermap.org/img/wn/" + weather.getString("icon") + "@2x.png";
+            WeatherInfo weatherInfo = new WeatherInfo(cityName, temperature, weatherDesc);
+            new DownloadImageTask(weatherIcon).execute(weatherIconUrl);
+            liveData.postValue(weatherInfo);
+        }
+    }
+
+    private static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        private MutableLiveData<Bitmap> weatherIcon;
+
+        DownloadImageTask(MutableLiveData<Bitmap> weatherIcon) {
+            this.weatherIcon = weatherIcon;
+        }
+
+        protected Bitmap doInBackground(String... strings) {
+            Bitmap icon = null;
+            try {
+                icon = BitmapFactory.decodeStream(new URL(strings[0]).openStream());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return icon;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            weatherIcon.setValue(result);
         }
     }
 

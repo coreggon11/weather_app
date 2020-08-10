@@ -41,7 +41,6 @@
             android:layout_below="@id/line1"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:text="@string/recipe_text"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <TextView
@@ -70,7 +69,6 @@
             android:layout_below="@id/line2"
             android:layout_marginStart="24dp"
             android:layout_marginTop="8dp"
-            android:text="@string/comment_section_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -91,7 +89,6 @@
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:autofillHints=""
-            android:hint="@string/write_comment_hint"
             android:inputType="textMultiLine" />
 
         <Button
@@ -100,8 +97,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/edit_text_comment"
             android:layout_margin="8dp"
-            android:background="@color/colorAccent"
-            android:text="@string/publish_comment" />
+            android:background="@color/colorAccent" />
     </RelativeLayout>
 
 </ScrollView>
