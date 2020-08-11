@@ -14,6 +14,9 @@ public class ShowWeatherActivity extends WeatherHandlingActivity<ShowWeatherView
         super.onCreate(savedInstanceState);
         init(ShowWeatherViewModel.class, R.layout.activity_show_weather, R.id.tw_weather_info_show_weather, R.id.iv_weather_icon_show_weather);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         String cityName = getIntent().getStringExtra(EXTRA_CITY_NAME);
 
         viewModel.searchCity(cityName);
