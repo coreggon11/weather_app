@@ -12,7 +12,8 @@ public class ShowWeatherActivity extends WeatherHandlingActivity<ShowWeatherView
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init(ShowWeatherViewModel.class, R.layout.activity_show_weather, R.id.tw_weather_info_show_weather, R.id.iv_weather_icon_show_weather);
+        init(ShowWeatherViewModel.class, R.layout.activity_show_weather, R.id.tv_city_info_show_weather,
+                R.id.tv_weather_info_show_weather, R.id.tv_temp_info_show_weather, R.id.iv_weather_icon_show_weather);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -20,7 +21,7 @@ public class ShowWeatherActivity extends WeatherHandlingActivity<ShowWeatherView
         String cityName = getIntent().getStringExtra(EXTRA_CITY_NAME);
 
         viewModel.searchCity(cityName);
-        setTitle("Weather in " + cityName);
+        setTitle(getString(R.string.weather_in, cityName));
     }
 
 }

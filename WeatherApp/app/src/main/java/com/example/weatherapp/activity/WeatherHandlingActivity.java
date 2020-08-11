@@ -11,18 +11,22 @@ import com.example.weatherapp.viewmodel.WeatherHandlingViewModel;
 
 public abstract class WeatherHandlingActivity<VM extends WeatherHandlingViewModel> extends BasicActivity<VM> {
 
-    protected void init(Class<VM> viewModelClass, int layoutRes, int weatherTextViewRes, int weatherIconRes) {
+    protected void init(Class<VM> viewModelClass, int layoutRes, int cityTvRes, int descRes, int tempRes, int weatherIconRes) {
         setContentView(layoutRes);
 
         viewModel = new ViewModelProvider(this).get(viewModelClass);
-        TextView weatherInfoTextView = findViewById(weatherTextViewRes);
+        TextView tvCityName = findViewById(cityTvRes);
+        TextView tvDesc = findViewById(descRes);
+        TextView tvTemp = findViewById(tempRes);
         ImageView weatherIcon = findViewById(weatherIconRes);
 
         viewModel.getWeatherInfo().observe(this, (WeatherInfo weatherInfo) -> {
             if (weatherInfo == null) {
-                weatherInfoTextView.setText(R.string.no_resulst_found);
+                tvCityName.setText(R.string.no_result_found);
             } else {
-                weatherInfoTextView.setText(weatherInfo.getCityName() + "," + weatherInfo.getWeatherDesc() + ", " + weatherInfo.getTemperature() + "°C");
+                tvCityName.setText(weatherInfo.getCityName());
+                tvDesc.setText(weatherInfo.getWeatherDesc());
+                tvTemp.setText(String.format("%s°C", weatherInfo.getTemperature()));
             }
         });
         viewModel.getWeatherIcon().observe(this, weatherIcon::setImageBitmap);

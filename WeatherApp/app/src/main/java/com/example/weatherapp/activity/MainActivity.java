@@ -24,7 +24,8 @@ public class MainActivity extends WeatherHandlingActivity<MainViewModel> {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        init(MainViewModel.class, R.layout.activity_main, R.id.tw_weather_info, R.id.iv_weather_icon);
+        init(MainViewModel.class, R.layout.activity_main, R.id.tv_city_info,
+                R.id.tv_weather_info, R.id.tv_temp_info, R.id.iv_weather_icon);
 
         Objects.requireNonNull(getSupportActionBar()).setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.search_action_bar);
