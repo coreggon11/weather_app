@@ -23,16 +23,21 @@ public class Repository {
     public String getDefaultCity() {
         final AtomicReference<String> cityNameReference = new AtomicReference<>();
         final AtomicBoolean mutex = new AtomicBoolean(false);
-        new HandleObjectAsyncTask<String>(new Runnable() {
-            @Override
-            public void run() {
-                String cityName = dao.getDefaultCity(UserConfig.CONFIG_ID);
-                cityNameReference.set(cityName);
-                mutex.set(true);
-            }
+        new HandleObjectAsyncTask<String>(() -> {
+            String cityName = dao.getDefaultCity(UserConfig.CONFIG_ID);
+            cityNameReference.set(cityName);
+            mutex.set(true);
         }).execute();
         while (!mutex.get()) ;
         return cityNameReference.get();
+    }
+
+    public void setDefaultCity(String cityName) {
+        final AtomicBoolean mutex = new AtomicBoolean(false);
+        new HandleObjectAsyncTask<String>(() -> {
+            dao.update(new UserConfig(UserConfig.CONFIG_ID, cityName));
+            mutex.set(true);
+        }).execute();
     }
 
     @AllArgsConstructor

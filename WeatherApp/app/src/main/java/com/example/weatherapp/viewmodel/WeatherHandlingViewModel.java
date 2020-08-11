@@ -12,6 +12,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.weatherapp.java.Constants;
 import com.example.weatherapp.java.WeatherInfo;
+import com.example.weatherapp.repository.Repository;
 
 import org.json.JSONObject;
 
@@ -29,17 +30,25 @@ public abstract class WeatherHandlingViewModel extends AndroidViewModel {
     private MutableLiveData<WeatherInfo> weatherInfo;
     private MutableLiveData<Bitmap> weatherIcon;
 
+    protected Repository repository;
+
     WeatherHandlingViewModel(@NonNull Application application) {
         super(application);
         weatherInfo = new MutableLiveData<>();
         weatherIcon = new MutableLiveData<>();
+        this.repository = new Repository(application);
     }
 
     public void searchCity(String city) {
         new GetTask(city, weatherInfo, weatherIcon).execute();
     }
 
+    public void searchCity() {
+        searchCity(repository.getDefaultCity());
+    }
+
     private static class GetTask extends AsyncTask<Void, Void, JSONObject> {
+
         private String cityName;
         private MutableLiveData<WeatherInfo> liveData;
         private MutableLiveData<Bitmap> weatherIcon;

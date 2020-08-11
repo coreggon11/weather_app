@@ -10,4 +10,8 @@ public class ShowWeatherViewModel extends WeatherHandlingViewModel {
         super(application);
     }
 
+    public void setAsDefault(String city) {
+        repository.setDefaultCity(city);
+    }
+
 }

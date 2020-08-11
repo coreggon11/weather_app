@@ -3,4 +3,5 @@
     <string name="search">Hľadať</string>
     <string name="no_result_found">Žiadny výsledok!</string>
     <string name="weather_in">Počasie v %s</string>
+    <string name="set_as_default">Nastaviť ako predvolené</string>
 </resources>

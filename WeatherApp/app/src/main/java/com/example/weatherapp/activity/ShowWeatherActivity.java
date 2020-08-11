@@ -1,6 +1,8 @@
 package com.example.weatherapp.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.viewmodel.ShowWeatherViewModel;
@@ -22,6 +24,11 @@ public class ShowWeatherActivity extends WeatherHandlingActivity<ShowWeatherView
 
         viewModel.searchCity(cityName);
         setTitle(getString(R.string.weather_in, cityName));
+
+        Button buttonSetAsDefault = findViewById(R.id.btn_set_as_default);
+        buttonSetAsDefault.setOnClickListener((View view) -> {
+            viewModel.setAsDefault(cityName);
+        });
     }
 
 }
