@@ -10,11 +10,12 @@ import android.view.MenuItem;
 import android.widget.EditText;
 
 import com.example.weatherapp.R;
+import com.example.weatherapp.databinding.ActivityMainBinding;
 import com.example.weatherapp.viewmodel.MainViewModel;
 
 import java.util.Objects;
 
-public class MainActivity extends WeatherHandlingActivity<MainViewModel> {
+public class MainActivity extends WeatherHandlingActivity<MainViewModel, ActivityMainBinding> {
 
     public static final String EXTRA_CITY_NAME = "EXTRA_CITY_NAME";
 

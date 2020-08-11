@@ -1,50 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context=".activity.MainActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ImageView
-        android:id="@+id/iv_weather_icon_show_weather"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp" />
+    <data>
 
-    <TextView
-        android:id="@+id/tv_city_info_show_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_weather_icon_show_weather"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/colorBlack"
-        android:textSize="18sp" />
+        <variable
+            name="viewModel"
+            type="com.example.weatherapp.viewmodel.ShowWeatherViewModel" />
 
-    <TextView
-        android:id="@+id/tv_weather_info_show_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_city_info_show_weather"
-        android:layout_centerHorizontal="true"
-        android:textSize="16sp" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_temp_info_show_weather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_weather_info_show_weather"
-        android:layout_centerHorizontal="true"
-        android:textSize="16sp" />
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        tools:context=".activity.MainActivity">
 
-    <Button
-        android:id="@+id/btn_set_as_default"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_temp_info_show_weather"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:text="@string/set_as_default" />
+        <ImageView
+            android:id="@+id/iv_weather_icon_show_weather"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/tv_city_info_show_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_weather_icon_show_weather"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_weather_info_show_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_city_info_show_weather"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/tv_temp_info_show_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_weather_info_show_weather"
+            android:layout_centerHorizontal="true"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_set_as_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_temp_info_show_weather"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="@string/set_as_default" />
+
+    </RelativeLayout>
+</layout>

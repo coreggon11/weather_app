@@ -3,17 +3,20 @@ package com.example.weatherapp.activity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.java.WeatherInfo;
 import com.example.weatherapp.viewmodel.WeatherHandlingViewModel;
 
-public abstract class WeatherHandlingActivity<VM extends WeatherHandlingViewModel> extends BasicActivity<VM> {
+public abstract class WeatherHandlingActivity<VM extends WeatherHandlingViewModel, B extends ViewDataBinding> extends BasicActivity<VM, B> {
 
     protected void init(Class<VM> viewModelClass, int layoutRes, int cityTvRes, int descRes, int tempRes, int weatherIconRes) {
         setContentView(layoutRes);
 
+        binding = DataBindingUtil.inflate(getLayoutInflater(), layoutRes, null, false);
         viewModel = new ViewModelProvider(this).get(viewModelClass);
         TextView tvCityName = findViewById(cityTvRes);
         TextView tvDesc = findViewById(descRes);
