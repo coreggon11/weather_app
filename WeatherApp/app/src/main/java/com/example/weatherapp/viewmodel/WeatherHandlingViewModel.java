@@ -35,7 +35,7 @@ public abstract class WeatherHandlingViewModel extends AndroidViewModel {
         weatherIcon = new MutableLiveData<>();
     }
 
-    void searchCity(String city) {
+    public void searchCity(String city) {
         new GetTask(city, weatherInfo, weatherIcon).execute();
     }
 
@@ -81,15 +81,20 @@ public abstract class WeatherHandlingViewModel extends AndroidViewModel {
         @SneakyThrows
         @Override
         protected void onPostExecute(JSONObject response) {
-            String cityName = response.getString("name");
-            JSONObject main = response.getJSONObject("main");
-            JSONObject weather = response.getJSONArray("weather").getJSONObject(0);
-            double temperature = main.getDouble("temp");
-            String weatherDesc = weather.getString("description");
-            String weatherIconUrl = "http://openweathermap.org/img/wn/" + weather.getString("icon") + "@2x.png";
-            WeatherInfo weatherInfo = new WeatherInfo(cityName, temperature, weatherDesc);
-            new DownloadImageTask(weatherIcon).execute(weatherIconUrl);
-            liveData.postValue(weatherInfo);
+            if (response == null) {
+                liveData.postValue(null);
+                weatherIcon.postValue(null);
+            } else {
+                String cityName = response.getString("name");
+                JSONObject main = response.getJSONObject("main");
+                JSONObject weather = response.getJSONArray("weather").getJSONObject(0);
+                double temperature = main.getDouble("temp");
+                String weatherDesc = weather.getString("description");
+                String weatherIconUrl = "http://openweathermap.org/img/wn/" + weather.getString("icon") + "@2x.png";
+                WeatherInfo weatherInfo = new WeatherInfo(cityName, temperature, weatherDesc);
+                new DownloadImageTask(weatherIcon).execute(weatherIconUrl);
+                liveData.postValue(weatherInfo);
+            }
         }
     }
 
@@ -111,7 +116,7 @@ public abstract class WeatherHandlingViewModel extends AndroidViewModel {
         }
 
         protected void onPostExecute(Bitmap result) {
-            weatherIcon.setValue(result);
+            weatherIcon.postValue(result);
         }
     }
 

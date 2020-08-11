@@ -2,12 +2,12 @@ package com.example.weatherapp.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.weatherapp.R;
 import com.example.weatherapp.viewmodel.MainViewModel;
@@ -15,6 +15,8 @@ import com.example.weatherapp.viewmodel.MainViewModel;
 import java.util.Objects;
 
 public class MainActivity extends WeatherHandlingActivity<MainViewModel> {
+
+    public static final String EXTRA_CITY_NAME = "EXTRA_CITY_NAME";
 
     private EditText searchText;
 
@@ -40,7 +42,9 @@ public class MainActivity extends WeatherHandlingActivity<MainViewModel> {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.button_search) {
-            Toast.makeText(getApplicationContext(), "Search", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(getApplicationContext(), ShowWeatherActivity.class)
+                    .putExtra(EXTRA_CITY_NAME, searchText.getText().toString());
+            startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
