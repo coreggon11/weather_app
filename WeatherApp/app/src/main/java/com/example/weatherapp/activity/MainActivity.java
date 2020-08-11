@@ -32,7 +32,7 @@ public class MainActivity extends BasicActivity<MainViewModel> {
         ImageView weatherIcon = findViewById(R.id.iv_weather_icon);
         viewModel.getWeatherInfo().observe(this, (WeatherInfo weatherInfo) -> {
             // TODO on response
-            weatherInfoTextView.setText("");
+            weatherInfoTextView.setText(weatherInfo.getCityName() + "," + weatherInfo.getWeatherDesc() + ", " + weatherInfo.getTemperature() + "°C");
         });
         viewModel.getWeatherIcon().observe(this, weatherIcon::setImageBitmap);
     }
