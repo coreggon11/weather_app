@@ -52,7 +52,6 @@ public abstract class Database extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            // TODO default city
             dao.insert(new UserConfig(UserConfig.CONFIG_ID, "Ruzomberok"));
             return null;
         }

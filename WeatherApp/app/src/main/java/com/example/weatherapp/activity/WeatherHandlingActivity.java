@@ -26,7 +26,7 @@ public abstract class WeatherHandlingActivity<VM extends WeatherHandlingViewMode
             } else {
                 tvCityName.setText(weatherInfo.getCityName());
                 tvDesc.setText(weatherInfo.getWeatherDesc());
-                tvTemp.setText(String.format("%s°C", weatherInfo.getTemperature()));
+                tvTemp.setText(String.format("%s °C", weatherInfo.getTemperature()));
             }
         });
         viewModel.getWeatherIcon().observe(this, weatherIcon::setImageBitmap);

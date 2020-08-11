@@ -20,10 +20,6 @@ public class Repository {
         this.dao = Database.getInstance(application).getDao();
     }
 
-//    public void basicSetup(final String cityName) {
-//        new HandleObjectAsyncTask<Void>(() -> dao.insert(new UserConfig(UserConfig.CONFIG_ID, cityName))).execute();
-//    }
-
     public String getDefaultCity() {
         final AtomicReference<String> cityNameReference = new AtomicReference<>();
         final AtomicBoolean mutex = new AtomicBoolean(false);
