@@ -27,10 +27,9 @@ import lombok.SneakyThrows;
 @Getter
 public abstract class WeatherHandlingViewModel extends AndroidViewModel {
 
+    protected Repository repository;
     private MutableLiveData<WeatherInfo> weatherInfo;
     private MutableLiveData<Bitmap> weatherIcon;
-
-    protected Repository repository;
 
     WeatherHandlingViewModel(@NonNull Application application) {
         super(application);

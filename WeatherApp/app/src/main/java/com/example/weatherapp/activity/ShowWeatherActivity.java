@@ -30,7 +30,7 @@ public class ShowWeatherActivity extends WeatherHandlingActivity<ShowWeatherView
         buttonSetAsDefault.setOnClickListener((View view) -> {
             viewModel.setAsDefault(cityName);
         });
-        
+
         viewModel.getWeatherInfo().observe(this, (WeatherInfo info) -> {
             buttonSetAsDefault.setEnabled(info != null);
         });

@@ -18,8 +18,13 @@ import com.example.weatherapp.java.UserConfig;
 public abstract class Database extends RoomDatabase {
 
     private static Database instance;
-
-    public abstract Dao getDao();
+    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            new PopulateDbAsyncTask(instance).execute();
+        }
+    };
 
     /**
      * method to get the instance of database. if instance is null we create new
@@ -35,13 +40,7 @@ public abstract class Database extends RoomDatabase {
         return instance;
     }
 
-    private static RoomDatabase.Callback roomCallback = new RoomDatabase.Callback() {
-        @Override
-        public void onCreate(@NonNull SupportSQLiteDatabase db) {
-            super.onCreate(db);
-            new PopulateDbAsyncTask(instance).execute();
-        }
-    };
+    public abstract Dao getDao();
 
     private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
         private Dao dao;
