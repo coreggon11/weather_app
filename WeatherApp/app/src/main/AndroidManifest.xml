@@ -25,6 +25,7 @@
             android:name="com.example.weatherapp.activity.RecipeActivity"
             android:launchMode="singleTask"
             android:parentActivityName="com.example.weatherapp.activity.InsideActivity" />
+        <activity android:name=".activity.ShowWeatherActivity" />
     </application>
 
 
