@@ -49,4 +49,10 @@ public class MainActivity extends WeatherHandlingActivity<MainViewModel> {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        viewModel.searchCity();
+    }
 }

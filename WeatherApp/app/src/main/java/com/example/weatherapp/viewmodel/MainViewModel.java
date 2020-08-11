@@ -16,10 +16,9 @@ public class MainViewModel extends WeatherHandlingViewModel {
     public MainViewModel(@NonNull Application application) {
         super(application);
         this.repository = new Repository(application);
-        searchCity();
     }
 
-    private void searchCity() {
+    public void searchCity() {
         searchCity(repository.getDefaultCity());
     }
 
